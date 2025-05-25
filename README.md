@@ -4,7 +4,7 @@ DPMamba: Distillation Prompt Mamba for Multimodal Remote Sensing Image Classific
 *Yueguang Yang, Jiahui Qu, Ling Huang, Wenqian Dong*
 
 
-![Teaser Image](pic/framework.jpg)  
+![Teaser Image](pic/framework.jpg)   
 
 ## Environment Setup
 
