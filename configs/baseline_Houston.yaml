@@ -1,0 +1,87 @@
+MASTER_PORT_: 29534
+CUDA_VISIBLE_DEVICES_: 1
+SEED: 0
+#Is_Pretrain: False
+#MODEL_PATH: /media/xd132/USER_new/yyg/DPMamba/output/baseline_Houston/20250524174524/model/Houston_0.9832.pth
+
+MODEL:
+  TYPE: DPMamba
+  NAME: baseline_Houston
+  DROP_PATH_RATE: 0.3 ##
+  HIDDEN_DIM_IMAM: 64
+  HIDDEN_DIM_CMAM: 64
+  SHARE_SSM: False
+  VSSM:
+    SCAN_MODE: "Zigzag"
+    POSEMBED: False
+    EMBED_DIM: [ [ 64, 64]]
+    DEPTHS: [ 2 ]
+    SSM_D_STATE: 1  #
+    SSM_DT_RANK: "auto"
+    SSM_RATIO: 1.0
+    SSM_CONV: 3
+    SSM_CONV_BIAS: True
+    SSM_FORWARDTYPE: "v05_noz" # v3_noz
+    DOWNSAMPLE: "v3"
+    PATCHEMBED: "v2"
+    NORM_LAYER: "ln2d"
+    MLP_RATIO: 4.0
+    MLP_ACT_LAYER: 'nn.GELU'
+    MLP_DROP_RATE: 0.3
+    GMLP: False
+
+DATA:
+  DATASET_NAME: "Houston" #
+  Modality_Num: 2 #
+  NUM_CLASSES: 15 #
+  Num_Samples_Per_Class: 40 # 40
+  BATCH_SIZE: 150
+  NUM_WORKERS: 0
+  IMG_SIZE: 11
+  PATCH_SIZE: 11 #
+  N_PCA: 48
+
+TRAIN:
+  START_EPOCH: 0
+  EPOCHS: 500 #
+  WARMUP_EPOCHS: 30 #
+  LEARN_RATE: 3e-4 #
+  CLIP_GRAD: 2.0
+  LAYER_DECAY: 1.0
+  WEIGHT_DECAY: 0.05
+  EPOCH_CHANGE_OPTI: -1
+  OPTIMIZER:
+      NAME: 'adamw' #
+      EPS: 1e-8 # adamw
+      BETAS: (0.9, 0.999)
+      MOMENTUM: 0.9
+  LR_SCHEDULER:
+      NAME: 'cosine'
+      DECAY_EPOCHS:  30
+      DECAY_RATE: 0.1
+      WARMUP_PREFIX: True
+      GAMMA: 0.1
+      MULTISTEPS: []
+
+Fine_TUNE:
+  START_EPOCH: 0
+  EPOCHS: 500 #
+  WARMUP_EPOCHS: 30
+  LEARN_RATE: 3e-4
+  WEIGHT_DECAY: 0.05
+  CLIP_GRAD: 2.0
+  LAYER_DECAY: 1.0
+  EPOCH_CHANGE_OPTI: -1
+  ACCUMULATION_STEPS: 1
+  OPTIMIZER:
+    NAME: 'adamw'
+    EPS: 1e-8
+    BETAS: (0.85, 0.999)
+    MOMENTUM: 0.9
+  LR_SCHEDULER:
+    NAME: 'cosine' #   cosine, linear,  step, multistep
+    DECAY_EPOCHS: 30
+    DECAY_RATE: 0.1 #  step
+    WARMUP_PREFIX: True
+    GAMMA: 0.1
+    MULTISTEPS: [ ]

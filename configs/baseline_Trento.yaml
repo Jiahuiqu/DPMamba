@@ -1,0 +1,87 @@
+MASTER_PORT_: 29503
+CUDA_VISIBLE_DEVICES_: 0
+SEED: 0
+#Is_Pretrain: False
+#MODEL_PATH: /media/xd132/USER_new/yyg/DPMamba/output/baseline_Trento/20250524163218/model/Trento_0.9952.pth
+
+MODEL:
+  TYPE: DPMamba
+  NAME: baseline_Trento
+  DROP_PATH_RATE: 0.3 ##
+  HIDDEN_DIM_IMAM: 64
+  HIDDEN_DIM_CMAM: 64
+  SHARE_SSM: False
+  VSSM:
+    SCAN_MODE: "Zigzag"  # Zigzag  || Raster
+    POSEMBED: False
+    EMBED_DIM: [ [ 64, 64 ]]
+    DEPTHS: [ 2 ]
+    SSM_D_STATE: 1
+    SSM_DT_RANK: "auto"
+    SSM_RATIO: 1.0
+    SSM_CONV: 3
+    SSM_CONV_BIAS: False
+    SSM_FORWARDTYPE: "v05_noz" # v3_noz
+    DOWNSAMPLE: "v3"
+    PATCHEMBED: "v2"
+    NORM_LAYER: "ln2d"
+    MLP_RATIO: 4.0
+    MLP_ACT_LAYER: 'nn.GELU'
+    MLP_DROP_RATE: 0.0
+    GMLP: False
+
+DATA:
+  DATASET_NAME: "Trento" #
+  Modality_Num: 2 #
+  NUM_CLASSES: 6 #
+  Num_Samples_Per_Class: 40
+  BATCH_SIZE: 120 # NUM_CLASSES * N
+  NUM_WORKERS: 0 #
+  IMG_SIZE: 15
+  PATCH_SIZE: 15 #
+  N_PCA: -1
+
+TRAIN:
+  START_EPOCH: 0
+  EPOCHS: 500
+  WARMUP_EPOCHS: 30
+  LEARN_RATE: 3e-4
+  CLIP_GRAD: 1.0
+  LAYER_DECAY: 1.0
+  WEIGHT_DECAY: 0.05
+  EPOCH_CHANGE_OPTI: -1
+  OPTIMIZER:
+      NAME: 'adamw' # sgd  adamw
+      EPS: 1e-8 # adamw
+      BETAS: (0.9, 0.999) # adamw
+      MOMENTUM: 0.9
+  LR_SCHEDULER:
+      NAME: 'cosine' #   cosine, linear,  step, multistep
+      DECAY_EPOCHS:  30
+      DECAY_RATE: 0.1 # step
+      WARMUP_PREFIX: True
+      GAMMA: 0.1  # multistep
+      MULTISTEPS: []
+
+Fine_TUNE:
+  START_EPOCH: 0
+  EPOCHS: 500
+  WARMUP_EPOCHS: 30
+  LEARN_RATE: 3e-4 #
+  WEIGHT_DECAY: 0.05
+  CLIP_GRAD: 1.0
+  LAYER_DECAY: 1.0
+  EPOCH_CHANGE_OPTI: -1
+  ACCUMULATION_STEPS: 1
+  OPTIMIZER:
+    NAME: 'adamw'
+    EPS: 1e-8
+    BETAS: (0.9, 0.999)
+    MOMENTUM: 0.9
+  LR_SCHEDULER:
+    NAME: 'cosine' #   cosine, linear,  step, multistep
+    DECAY_EPOCHS: 30
+    DECAY_RATE: 0.1 #  step
+    WARMUP_PREFIX: True
+    GAMMA: 0.1
+    MULTISTEPS: [ ]
