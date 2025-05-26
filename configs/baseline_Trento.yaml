@@ -1,8 +1,6 @@
 MASTER_PORT_: 29503
 CUDA_VISIBLE_DEVICES_: 0
 SEED: 0
-#Is_Pretrain: False
-#MODEL_PATH: /media/xd132/USER_new/yyg/DPMamba/output/baseline_Trento/20250524163218/model/Trento_0.9952.pth
 
 MODEL:
   TYPE: DPMamba
