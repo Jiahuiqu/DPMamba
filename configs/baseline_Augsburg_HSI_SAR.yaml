@@ -1,8 +1,6 @@
 MASTER_PORT_: 29521
 CUDA_VISIBLE_DEVICES_: 0
 SEED: 0
-#Is_Pretrain: False
-#MODEL_PATH: /media/xd132/USER_new/yyg/DPMamba/output/baseline_Augsburg_HSI_SAR/20250524113309/model/Augsburg_HSI_SAR_0.8978.pth
 
 MODEL:
   TYPE: DPMamba
