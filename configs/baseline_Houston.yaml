@@ -1,8 +1,6 @@
 MASTER_PORT_: 29534
 CUDA_VISIBLE_DEVICES_: 1
 SEED: 0
-#Is_Pretrain: False
-#MODEL_PATH: /media/xd132/USER_new/yyg/DPMamba/output/baseline_Houston/20250524174524/model/Houston_0.9832.pth
 
 MODEL:
   TYPE: DPMamba
