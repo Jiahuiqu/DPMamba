@@ -49,26 +49,21 @@ python main_RS.py --cfg configs/<dataset name>.yaml  --is_Pretrain True
 python main_RS.py --cfg configs/<dataset name>.yaml --is_Pretrain False --MODEL_PATH <pre-trained model path> 
 ```
 
-[//]: # (## Citation)
 
-[//]: # ()
-[//]: # (If you find this project helpful, please use the following BibTeX entry.)
-
-[//]: # (```BibTeX)
-
-[//]: # (@article{lv2025test,)
-
-[//]: # (  title={Test-Time Domain Generalization via Universe Learning: A Multi-Graph Matching Approach for Medical Image Segmentation},)
-
-[//]: # (  author={Lv, Xingguo and Dong, Xingbo and Wang, Liwen and Yang, Jiewen and Zhao, Lei and Pu, Bin and Jin, Zhe and Li, Xuejun},)
-
-[//]: # (  journal={arXiv preprint arXiv:2503.13012},)
-
-[//]: # (  year={2025})
-
-[//]: # (})
-
-[//]: # (```)
+## Citation
+If you find our work helpful for your research, please consider citing our paper as follows:
+``` BibTex
+@inproceedings{yang2025DPMamba,
+  title     = {DPMamba: Distillation Prompt Mamba for Multimodal Remote Sensing Image Classification with Missing Modalities},
+  author    = {Yang, Yueguang and Qu, Jiahui and Huang, Ling and Dong, Wenqian},
+  booktitle = {Proceedings of the Thirty-Fourth International Joint Conference on
+               Artificial Intelligence, {IJCAI-25}},
+  pages     = {2224--2232},
+  year      = {2025},
+  doi       = {10.24963/ijcai.2025/248},
+  url       = {https://doi.org/10.24963/ijcai.2025/248},
+}
+```
 
 ## Acknowledgement
 
